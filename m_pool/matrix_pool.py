@@ -81,16 +81,16 @@ exec( open(os.path.join( here,'_version.py' )).read() )  # creates local __versi
 __email__ = "cet@appliedpython.com"
 __status__ = "3 - Alpha" # "3 - Alpha", "4 - Beta", "5 - Production/Stable"
 
-import cPickle as pickle
+import pickle as pickle
 import os
 import numpy as np
 try:
     import tables
 except:
-    print '... WARNING... No HDF5 Support Available (failed import tables)'
-from axis_obj import Axis
-from axis_pool import AxisPool
-from matrix_obj import Matrix
+    print('... WARNING... No HDF5 Support Available (failed import tables)')
+from .axis_obj import Axis
+from .axis_pool import AxisPool
+from .matrix_obj import Matrix
 
 class MatrixPool(object):
     """
@@ -192,7 +192,7 @@ class MatrixPool(object):
     def read_from_hdf5(self, fname=None):
         if fname==None:
             fname = '%s_mpool.h5'%(self.name)
-            print 'Reading:', fname
+            print('Reading:', fname)
             
         if os.path.exists(fname):            
             h5file = tables.openFile(fname, mode='r')
@@ -207,7 +207,7 @@ class MatrixPool(object):
             
             # First get the axes 
             axis_nameL = [_ for _ in root.axes_name_list]
-            print 'axis_nameL =',axis_nameL
+            print('axis_nameL =',axis_nameL)
 
             for aname in axis_nameL:
                 val_arr = getattr( root.axes, aname ).read()
@@ -220,7 +220,7 @@ class MatrixPool(object):
             
             # Then get the matrices
             matrix_nameL = [_ for _ in root.matrix_name_list]
-            print 'matrix_nameL =',matrix_nameL
+            print('matrix_nameL =',matrix_nameL)
 
             for mname in matrix_nameL:
                 m = getattr( root.matrices, mname ).read()
@@ -245,7 +245,7 @@ class MatrixPool(object):
     def read_from_pickle(self, fname=None):
         if fname==None:
             fname = '%s_matrix.pool'%(self.name)
-            print 'Reading:', fname
+            print('Reading:', fname)
             
         if os.path.exists(fname):            
             
@@ -271,7 +271,7 @@ class MatrixPool(object):
                 #print 'add Matrix',MD
                 self.add_matrix( **MD )
         else:
-            print '...WARNING... could not find:',fname
+            print('...WARNING... could not find:',fname)
 
 if __name__=="__main__":
 
@@ -296,6 +296,6 @@ if __name__=="__main__":
                 M.setByName( pc=pc, eps=eps, mr=mr, val=eps+pc+mr+0.321 )
     
 
-    print MP
+    print(MP)
     #MP.save_to_pickle()
     #MP.save_to_hdf5()

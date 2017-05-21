@@ -38,7 +38,7 @@ class Transform(object):
             self.r_func = None
             self.r_npfunc = None
         else:
-            print 'WARNING... Unknown Transform "%s"'%name
+            print('WARNING... Unknown Transform "%s"'%name)
             self.func = None
             self.npfunc = None
             self.r_func = None
@@ -73,13 +73,13 @@ if __name__=="__main__":
 
     T = Transform( 'log10' )
     
-    print 'T(2.2)=',T(2.2), type(T(2.2))
+    print('T(2.2)=',T(2.2), type(T(2.2)))
     
     arr = np.array( [1.1, 2.2, 3.3, 4.4] )
-    print 'T(arr)=',T(arr)
+    print('T(arr)=',T(arr))
     
-    print
+    print()
     T2 = Transform('What???')
-    print 'T2(2.2)=',T2(2.2)
-    print 'T2(arr)=',T2(arr)
+    print('T2(2.2)=',T2(2.2))
+    print('T2(arr)=',T2(arr))
 
